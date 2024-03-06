@@ -2,6 +2,7 @@
 #include <cstring>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <unistd.h>
 
 #define PORT 9876 // Port on which the UDP connection is made
 
