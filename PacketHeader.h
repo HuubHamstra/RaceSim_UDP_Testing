@@ -46,6 +46,20 @@ struct PacketHeader
         return offset;
     }
 
+    void print() {
+        std::sout << " " << "PacketHeader {" << std::endl;
+        std::sout << "   " << "m_packetFormat: " << this->m_packetFormat << std::endl;
+        std::sout << "   " << "m_gameMajorVersion: " << this->m_gameMajorVersion << std::endl;
+        std::sout << "   " << "m_gameMinorVersion: " << this->m_gameMinorVersion << std::endl;
+        std::sout << "   " << "m_packetVersion: " << this->m_packetVersion << std::endl;
+        std::sout << "   " << "m_packetId: " << Packet_ID_name[this->m_packetId] << std::endl;
+        std::sout << "   " << "m_sessionUID: " << this->m_sessionUID << std::endl;
+        std::sout << "   " << "m_sessionTime: " << this->m_sessionTime << std::endl;
+        std::sout << "   " << "m_frameIdentifier: " << this->m_frameIdentifier << std::endl;
+        std::sout << "   " << "m_playerCarIndex: " << this->m_playerCarIndex << std::endl;
+        std::sout << "   " << "m_secondaryPlayerCarIndex: " << this->m_secondaryPlayerCarIndex << std::endl;
+        std::sout << " " << "}" << std::endl;
+    }
 };
 
 #endif
