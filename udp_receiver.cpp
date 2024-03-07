@@ -67,7 +67,7 @@ int main() {
         switch (h_packet.m_packetId) {
             case PACKET_ID_MOTION:  // 0 - Motion
                 p_motion.get(buffer); // Geef de juiste offset mee aan CarMotionData
-                CarMotionData c_motion = p_motion.m_carMotionData;
+                //CarMotionData c_motion = p_motion.m_carMotionData;
                 std::cout << "Velocity: " << p_motion.m_localVelocityX << ","  << p_motion.m_localVelocityY << ","  << p_motion.m_localVelocityZ << std::endl;
                 break;
             // Voeg andere gevallen voor andere pakkettypen toe indien nodig
