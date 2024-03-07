@@ -1,5 +1,6 @@
 #ifndef PACKETHEADER_H
 #define PACKETHEADER_H
+#include <stdint.h>
 
 struct PacketHeader
 {
