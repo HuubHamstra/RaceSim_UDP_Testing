@@ -16,7 +16,7 @@ struct PacketHeader
   uint8 m_gameMajorVersion; // Game major version - "X.00"
   uint8 m_gameMinorVersion; // Game minor version - "1.XX"
   uint8 m_packetVersion; // Version of this packet type, all start from 1
-  uint8 m_packetId; // Identifier for the packet type, see below
+  uint16 m_packetId; // Identifier for the packet type, see below
   uint64 m_sessionUID; // Unique identifier for the session
   float m_sessionTime; // Session timestamp
   uint32 m_frameIdentifier; // Identifier for the frame the data was retrieved on
