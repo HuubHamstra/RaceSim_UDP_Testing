@@ -21,31 +21,49 @@ struct PacketHeader
   uint8_t m_secondaryPlayerCarIndex; // Index of secondary player's car in the array (splitscreen)
   // 255 if no second player
 
-  unsigned long get(char* buffer){
-        unsigned long offset = 0;
-        memcpy(&this->m_packetFormat,&buffer[offset],sizeof(this->m_packetFormat));
-        offset = offset + sizeof(this->m_packetFormat);
-        memcpy(&this->m_gameMajorVersion,&buffer[offset],sizeof(this->m_gameMajorVersion));
-        offset = offset + sizeof(this->m_gameMajorVersion);
-        memcpy(&this->m_gameMinorVersion,&buffer[offset],sizeof(this->m_gameMinorVersion));
-        offset = offset + sizeof(this->m_gameMinorVersion);
-        memcpy(&this->m_packetVersion,&buffer[offset],sizeof(this->m_packetVersion));
-        offset = offset + sizeof(this->m_packetVersion);
-        memcpy(&this->m_packetId,&buffer[offset],sizeof(this->m_packetId));
-        offset = offset + sizeof(this->m_packetId);
-        memcpy(&this->m_sessionUID,&buffer[offset],sizeof(this->m_sessionUID));
-        offset = offset + sizeof(this->m_sessionUID);
-        memcpy(&this->m_sessionTime,&buffer[offset],sizeof(this->m_sessionTime));
-        offset = offset + sizeof(this->m_sessionTime);
-        memcpy(&this->m_frameIdentifier,&buffer[offset],sizeof(this->m_frameIdentifier));
-        offset = offset + sizeof(this->m_frameIdentifier);
-        memcpy(&this->m_playerCarIndex,&buffer[offset],sizeof(this->m_playerCarIndex));
-        offset = offset + sizeof(this->m_playerCarIndex);
-        memcpy(&this->m_secondaryPlayerCarIndex,&buffer[offset],sizeof(this->m_secondaryPlayerCarIndex));
-        offset = offset + sizeof(this->m_secondaryPlayerCarIndex);
+  unsigned long get(const char* buffer) {
+    unsigned long offset = 0;
+    
+    // Gebruik reinterpret_cast om gegevens uit de buffer te halen en in de struct te plaatsen
+    this->m_packetFormat = *reinterpret_cast<const uint16_t*>(&buffer[offset]);
+    offset += sizeof(this->m_packetFormat);
+    
+    this->m_gameYear = *reinterpret_cast<const uint8_t*>(&buffer[offset]);
+    offset += sizeof(this->m_gameYear);
+    
+    this->m_gameMajorVersion = *reinterpret_cast<const uint8_t*>(&buffer[offset]);
+    offset += sizeof(this->m_gameMajorVersion);
+    
+    this->m_gameMinorVersion = *reinterpret_cast<const uint8_t*>(&buffer[offset]);
+    offset += sizeof(this->m_gameMinorVersion);
+    
+    this->m_packetVersion = *reinterpret_cast<const uint8_t*>(&buffer[offset]);
+    offset += sizeof(this->m_packetVersion);
+    
+    this->m_packetId = *reinterpret_cast<const uint8_t*>(&buffer[offset]);
+    offset += sizeof(this->m_packetId);
+    
+    this->m_sessionUID = *reinterpret_cast<const uint64_t*>(&buffer[offset]);
+    offset += sizeof(this->m_sessionUID);
+    
+    this->m_sessionTime = *reinterpret_cast<const float*>(&buffer[offset]);
+    offset += sizeof(this->m_sessionTime);
+    
+    this->m_frameIdentifier = *reinterpret_cast<const uint32_t*>(&buffer[offset]);
+    offset += sizeof(this->m_frameIdentifier);
+    
+    this->m_overallFrameIdentifier = *reinterpret_cast<const uint32_t*>(&buffer[offset]);
+    offset += sizeof(this->m_overallFrameIdentifier);
+    
+    this->m_playerCarIndex = *reinterpret_cast<const uint8_t*>(&buffer[offset]);
+    offset += sizeof(this->m_playerCarIndex);
+    
+    this->m_secondaryPlayerCarIndex = *reinterpret_cast<const uint8_t*>(&buffer[offset]);
+    offset += sizeof(this->m_secondaryPlayerCarIndex);
 
-        return offset;
-    }
+    return offset;
+}
+
 
     void print() {
         std::cout << " " << "PacketHeader {" << std::endl;
