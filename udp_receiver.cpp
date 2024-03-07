@@ -4,44 +4,44 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#define PORT 9876 // Port on which the UDP connection is made
+#define PORT 20777 // Poort waarop de UDP-verbinding wordt gemaakt
 
 int main() {
     int sockfd;
     struct sockaddr_in servaddr, cliaddr;
 
-    // Create a UDP socket
+    // Maak een UDP-socket
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     if (sockfd < 0) {
-        std::cerr << "Socket creation failed\n";
+        std::cerr << "Socket creatie mislukt\n";
         return 1;
     }
 
-    // Set up server address
+    // Serveradres instellen
     memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
-    servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    servaddr.sin_addr.s_addr = inet_addr("172.20.10.5"); // IP-adres instellen
     servaddr.sin_port = htons(PORT);
 
-    // Bind the socket with the server address
+    // Bind de socket met het serveradres
     if (bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0) {
-        std::cerr << "Binding failed\n";
+        std::cerr << "Binding mislukt\n";
         return 1;
     }
 
-    std::cout << "Server is listening on port " << PORT << std::endl;
+    std::cout << "Server luistert op poort " << PORT << std::endl;
 
     char buffer[1024];
     socklen_t len = sizeof(cliaddr);
 
-    // Receive data continuously
+    // Ontvang continu data
     while (true) {
         int n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 0, (struct sockaddr *)&cliaddr, &len);
-        buffer[n] = '\0'; // Append a null byte at the end of the received data
-        std::cout << "Received message: " << buffer << std::endl;
+        buffer[n] = '\0'; // Voeg een nulbyte toe aan het einde van de ontvangen gegevens
+        std::cout << "Ontvangen bericht: " << buffer << std::endl;
     }
 
-    // Close the socket
+    // Sluit de socket
     close(sockfd);
 
     return 0;
