@@ -3,7 +3,7 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <unistd.h>
-#include <stdint.h>
+#include <cstdint> // Inclusie van cstdint voor uint16_t, uint8_t, uint32_t, uint64_t
 
 #include "PacketHeader.h"
 
