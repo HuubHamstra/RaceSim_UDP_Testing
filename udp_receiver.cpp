@@ -6,7 +6,7 @@
 #include <cstdint> // Inclusie van cstdint voor uint16_t, uint8_t, uint32_t, uint64_t
 
 #include "PacketHeader.h"
-#include "CarMotionData.h"
+#include "PacketMotionData.h"
 
 #define PORT 20777 // Poort waarop de UDP-verbinding wordt gemaakt
 
@@ -54,20 +54,21 @@ int main() {
     socklen_t len = sizeof(cliaddr);
 
     PacketHeader h_packet;
-    CarMotionData p_motion;
+    PacketMotionData p_motion;
 
     // Ontvang continu data
     while (true) {
         int n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 0, (struct sockaddr *)&cliaddr, &len);
-        buffer[n] = '\0'; // Voeg een nulbyte toe aan het einde van de ontvangen gegevens
 
         unsigned long offset = h_packet.get(buffer); // Haal de offset op van de PacketHeader
-        std::cout << "Ontvangen bericht: " << h_packet.m_packetId << ", " << offset << std::endl;
+        h_packet.print();
+        //std::cout << "Ontvangen bericht: " << h_packet << ", " << offset << std::endl;
 
         switch (h_packet.m_packetId) {
             case PACKET_ID_MOTION:  // 0 - Motion
-                p_motion.get(buffer, sizeof(PacketHeader)); // Geef de juiste offset mee aan CarMotionData
-                std::cout << "Velocity: " << p_motion.m_worldVelocityX << ","  << p_motion.m_worldVelocityY << ","  << p_motion.m_worldVelocityZ << std::endl;
+                p_motion.get(buffer); // Geef de juiste offset mee aan CarMotionData
+                CarMotionData c_motion = p_motion.m_carMotionData;
+                std::cout << "Velocity: " << p_motion.m_localVelocityX << ","  << p_motion.m_localVelocityY << ","  << p_motion.m_localVelocityZ << std::endl;
                 break;
             // Voeg andere gevallen voor andere pakkettypen toe indien nodig
         }
