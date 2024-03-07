@@ -6,8 +6,24 @@
 #include <cstdint> // Inclusie van cstdint voor uint16_t, uint8_t, uint32_t, uint64_t
 
 #include "PacketHeader.h"
+#include "CarMotionData.h"
 
 #define PORT 20777 // Poort waarop de UDP-verbinding wordt gemaakt
+
+enum packetId : int {
+    PACKET_ID_MOTION = 0,
+    PACKET_ID_SESSION = 1,
+    PACKET_ID_LAP_DATA = 2,
+    PACKET_ID_EVENT = 3,
+    PACKET_ID_PARTICIPANTS = 4,
+    PACKET_ID_CAR_SETUPS = 5,
+    PACKET_ID_CAR_TELEMETRY = 6,
+    PACKET_ID_CAR_STATUS = 7,
+    PACKET_ID_FINAL_CLASSIFICATION = 8,
+    PACKET_ID_LOBBY_INFO = 9,
+    PACKET_ID_CAR_DAMAGE = 10,
+    PACKET_ID_SESSION_HISTORY = 11
+};
 
 int main() {
     int sockfd;
@@ -38,6 +54,7 @@ int main() {
     socklen_t len = sizeof(cliaddr);
 
     PacketHeader h_packet;
+    CarMotionData p_motion;
 
     // Ontvang continu data
     while (true) {
@@ -45,6 +62,12 @@ int main() {
         buffer[n] = '\0'; // Voeg een nulbyte toe aan het einde van de ontvangen gegevens
         h_packet.get(buffer);
         std::cout << "Ontvangen bericht: " << h_packet.m_sessionTime << std::endl;
+        switch (h_packet.m_packetId) {
+          case PACKET_ID_MOTION:  // 0 - Motion
+                p_motion.get(buffer);
+                std::cout << "Velocity: " << p_motion.m_worldVelocityX << ","  << p_motion.m_worldVelocityY << ","  << p_motion.m_worldVelocityZ << std::endl;
+                break;
+        }
     }
 
     // Sluit de socket
