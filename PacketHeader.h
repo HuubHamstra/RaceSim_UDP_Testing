@@ -1,29 +1,24 @@
 #ifndef PACKETHEADER_H
 #define PACKETHEADER_H
 
-typedef unsigned short uint16;
-typedef unsigned char uint8;
-typedef unsigned int uint32;
-typedef unsigned long long uint64;
-
-#include <cstdint> // Inclusie van cstdint voor het definiëren van uint16, uint8, uint32, uint64
+#include <cstdint> // Inclusie van cstdint voor het definiëren van uint16_t, uint8_t, uint32_t, uint64_t
 #include <iostream>
 
 struct PacketHeader
 {
-  uint16 m_packetFormat; // 2023
-  uint8 m_gameYear; // Game year - last two digits e.g. 23
-  uint8 m_gameMajorVersion; // Game major version - "X.00"
-  uint8 m_gameMinorVersion; // Game minor version - "1.XX"
-  uint8 m_packetVersion; // Version of this packet type, all start from 1
-  uint16 m_packetId; // Identifier for the packet type, see below
-  uint64 m_sessionUID; // Unique identifier for the session
+  uint16_t m_packetFormat; // 2023
+  uint8_t m_gameYear; // Game year - last two digits e.g. 23
+  uint8_t m_gameMajorVersion; // Game major version - "X.00"
+  uint8_t m_gameMinorVersion; // Game minor version - "1.XX"
+  uint8_t m_packetVersion; // Version of this packet type, all start from 1
+  uint8_t m_packetId; // Identifier for the packet type, see below
+  uint64_t m_sessionUID; // Unique identifier for the session
   float m_sessionTime; // Session timestamp
-  uint32 m_frameIdentifier; // Identifier for the frame the data was retrieved on
-  uint32 m_overallFrameIdentifier; // Overall identifier for the frame the data was retrieved
+  uint32_t m_frameIdentifier; // Identifier for the frame the data was retrieved on
+  uint32_t m_overallFrameIdentifier; // Overall identifier for the frame the data was retrieved
   // on, doesn't go back after flashbacks
-  uint8 m_playerCarIndex; // Index of player's car in the array
-  uint8 m_secondaryPlayerCarIndex; // Index of secondary player's car in the array (splitscreen)
+  uint8_t m_playerCarIndex; // Index of player's car in the array
+  uint8_t m_secondaryPlayerCarIndex; // Index of secondary player's car in the array (splitscreen)
   // 255 if no second player
 
   unsigned long get(char* buffer){

@@ -1,14 +1,9 @@
 #ifndef PACKETMOTIONDATA_H
 #define PACKETMOTIONDATA_H
 
-#include <cstdint> // Inclusie van cstdint voor het definiëren van uint16, uint8, uint32, uint64
+#include <cstdint> // Inclusie van cstdint voor het definiëren van uint16_t, uint8_t, uint32_t, uint64_t
 #include "PacketHeader.h"
 #include "CarMotionData.h"
-
-typedef unsigned short uint16;
-typedef unsigned char uint8;
-typedef unsigned int uint32;
-typedef unsigned long long uint64;
 
 struct PacketMotionData {
     PacketHeader    m_header;               	// Header
