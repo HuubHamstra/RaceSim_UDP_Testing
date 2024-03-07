@@ -86,6 +86,70 @@ struct CarMotionData
         //d
         return offset;
     }
+
+    void print() {
+        std::cout << " "
+                   << "CarMotionData {" << std::endl;
+        // WorldPosition
+        std::cout << "   "
+                   << "m_worldPositionX: " << this->m_worldPositionX
+                   << std::endl;
+        std::cout << "   "
+                   << "m_worldPositionY: " << this->m_worldPositionY
+                   << std::endl;
+        std::cout << "   "
+                   << "m_worldPositionZ: " << this->m_worldPositionZ
+                   << std::endl;
+        // WorldVelocity
+        std::cout << "   "
+                   << "m_worldVelocityX: " << this->m_worldVelocityX
+                   << std::endl;
+        std::cout << "   "
+                   << "m_worldVelocityY: " << this->m_worldVelocityY
+                   << std::endl;
+        std::cout << "   "
+                   << "m_worldVelocityZ: " << this->m_worldVelocityZ
+                   << std::endl;
+        // WorldForwardDir
+        std::cout << "   "
+                   << "m_worldForwardDirX: " << this->m_worldForwardDirX
+                   << std::endl;
+        std::cout << "   "
+                   << "m_worldForwardDirY: " << this->m_worldForwardDirY
+                   << std::endl;
+        std::cout << "   "
+                   << "m_worldForwardDirZ: " << this->m_worldForwardDirZ
+                   << std::endl;
+        // WorldRightDir
+        std::cout << "   "
+                   << "m_worldRightDirX: " << this->m_worldRightDirX
+                   << std::endl;
+        std::cout << "   "
+                   << "m_worldRightDirY: " << this->m_worldRightDirY
+                   << std::endl;
+        std::cout << "   "
+                   << "m_worldRightDirZ: " << this->m_worldRightDirZ
+                   << std::endl;
+        // gForce
+        std::cout << "   "
+                   << "m_gForceLateral: " << this->m_gForceLateral << std::endl;
+        std::cout << "   "
+                   << "m_gForceLongitudinal: " << this->m_gForceLongitudinal
+                   << std::endl;
+        std::cout << "   "
+                   << "m_gForceVertical: " << this->m_gForceVertical
+                   << std::endl;
+        // Angles
+        std::cout << "   "
+                   << "m_yaw: " << this->m_yaw << std::endl;
+        std::cout << "   "
+                   << "m_pitch: " << this->m_pitch << std::endl;
+        std::cout << "   "
+                   << "m_roll: " << this->m_roll << std::endl;
+        //
+        std::cout << " "
+                   << "}" << std::endl;
+    }
 };
 
 #endif
