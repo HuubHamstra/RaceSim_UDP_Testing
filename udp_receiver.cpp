@@ -61,6 +61,8 @@ int main() {
         int n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 0, (struct sockaddr *)&cliaddr, &len);
         buffer[n] = '\0'; // Voeg een nulbyte toe aan het einde van de ontvangen gegevens
 
+        h_packet.get(buffer); 
+
         unsigned long offset = h_packet.get(buffer); // Haal de offset op van de PacketHeader
         std::cout << "Ontvangen bericht: " << h_packet.m_packetId << ", " << offset << std::endl;
 
