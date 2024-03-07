@@ -59,7 +59,6 @@ int main() {
     // Ontvang continu data
     while (true) {
         int n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 0, (struct sockaddr *)&cliaddr, &len);
-        buffer[n] = '\0'; // Voeg een nulbyte toe aan het einde van de ontvangen gegevens
 
         h_packet.get(buffer); 
 
