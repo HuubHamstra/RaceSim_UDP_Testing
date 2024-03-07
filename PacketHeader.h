@@ -22,30 +22,34 @@ struct PacketHeader
     // 255 if no second player
 
     unsigned long get(char* buffer){
-        unsigned long offset = 0;
-        memcpy(&this->m_packetFormat, &buffer[offset], sizeof(this->m_packetFormat));
-        offset = offset + sizeof(this->m_packetFormat);
-        memcpy(&this->m_gameMajorVersion, &buffer[offset], sizeof(this->m_gameMajorVersion));
-        offset = offset + sizeof(this->m_gameMajorVersion);
-        memcpy(&this->m_gameMinorVersion, &buffer[offset], sizeof(this->m_gameMinorVersion));
-        offset = offset + sizeof(this->m_gameMinorVersion);
-        memcpy(&this->m_packetVersion, &buffer[offset], sizeof(this->m_packetVersion));
-        offset = offset + sizeof(this->m_packetVersion);
-        memcpy(&this->m_packetId, &buffer[offset], sizeof(this->m_packetId));
-        this->m_packetId = static_cast<uint8_t>(this->m_packetId); // Zorg voor juiste toewijzing
-        offset = offset + sizeof(this->m_packetId);
-        memcpy(&this->m_sessionUID, &buffer[offset], sizeof(this->m_sessionUID));
-        offset = offset + sizeof(this->m_sessionUID);
-        memcpy(&this->m_sessionTime, &buffer[offset], sizeof(this->m_sessionTime));
-        offset = offset + sizeof(this->m_sessionTime);
-        memcpy(&this->m_frameIdentifier, &buffer[offset], sizeof(this->m_frameIdentifier));
-        offset = offset + sizeof(this->m_frameIdentifier);
-        memcpy(&this->m_playerCarIndex, &buffer[offset], sizeof(this->m_playerCarIndex));
-        offset = offset + sizeof(this->m_playerCarIndex);
-        memcpy(&this->m_secondaryPlayerCarIndex, &buffer[offset], sizeof(this->m_secondaryPlayerCarIndex));
-        offset = offset + sizeof(this->m_secondaryPlayerCarIndex);
+    unsigned long offset = 0;
+    memcpy(&this->m_packetFormat, &buffer[offset], sizeof(this->m_packetFormat));
+    offset += sizeof(this->m_packetFormat);
+    memcpy(&this->m_gameMajorVersion, &buffer[offset], sizeof(this->m_gameMajorVersion));
+    offset += sizeof(this->m_gameMajorVersion);
+    memcpy(&this->m_gameMinorVersion, &buffer[offset], sizeof(this->m_gameMinorVersion));
+    offset += sizeof(this->m_gameMinorVersion);
+    memcpy(&this->m_packetVersion, &buffer[offset], sizeof(this->m_packetVersion));
+    offset += sizeof(this->m_packetVersion);
+    memcpy(&this->m_packetId, &buffer[offset], sizeof(this->m_packetId));
+    this->m_packetId = static_cast<uint8_t>(this->m_packetId);
+    offset += sizeof(this->m_packetId);
+    memcpy(&this->m_sessionUID, &buffer[offset], sizeof(this->m_sessionUID));
+    offset += sizeof(this->m_sessionUID);
+    memcpy(&this->m_sessionTime, &buffer[offset], sizeof(this->m_sessionTime));
+    offset += sizeof(this->m_sessionTime);
+    memcpy(&this->m_frameIdentifier, &buffer[offset], sizeof(this->m_frameIdentifier));
+    offset += sizeof(this->m_frameIdentifier);
+    memcpy(&this->m_overallFrameIdentifier, &buffer[offset], sizeof(this->m_overallFrameIdentifier));
+    offset += sizeof(this->m_overallFrameIdentifier);
+    memcpy(&this->m_playerCarIndex, &buffer[offset], sizeof(this->m_playerCarIndex));
+    offset += sizeof(this->m_playerCarIndex);
+    memcpy(&this->m_secondaryPlayerCarIndex, &buffer[offset], sizeof(this->m_secondaryPlayerCarIndex));
+    this->m_secondaryPlayerCarIndex = static_cast<uint8_t>(this->m_secondaryPlayerCarIndex);
+    offset += sizeof(this->m_secondaryPlayerCarIndex);
 
-        return offset;
+    return offset;
+
     }
 
     void print() {
