@@ -6,9 +6,9 @@
 #include "CarMotionData.h"
 
 typedef unsigned short uint16;
-typedef unsigned short uint8;
-typedef unsigned short uint32;
-typedef unsigned short uint64;
+typedef unsigned char uint8;
+typedef unsigned int uint32;
+typedef unsigned long long uint64;
 
 struct PacketMotionData {
     PacketHeader    m_header;               	// Header

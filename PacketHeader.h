@@ -2,9 +2,9 @@
 #define PACKETHEADER_H
 
 typedef unsigned short uint16;
-typedef unsigned short uint8;
-typedef unsigned short uint32;
-typedef unsigned short uint64;
+typedef unsigned char uint8;
+typedef unsigned int uint32;
+typedef unsigned long long uint64;
 
 #include <cstdint> // Inclusie van cstdint voor het definiëren van uint16, uint8, uint32, uint64
 #include <iostream>

@@ -2,9 +2,9 @@
 #define CARMOTIONDATA_H
 
 typedef unsigned short uint16;
-typedef unsigned short uint8;
-typedef unsigned short uint32;
-typedef unsigned short uint64;
+typedef unsigned char uint8;
+typedef unsigned int uint32;
+typedef unsigned long long uint64;
 
 #include <cstdint> // Include cstdint for defining int16, uint16, etc.
 
