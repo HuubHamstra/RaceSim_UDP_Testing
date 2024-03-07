@@ -2,6 +2,7 @@
 #define PACKETHEADER_H
 
 #include <cstdint> // Inclusie van cstdint voor het definiëren van uint16_t, uint8_t, uint32_t, uint64_t
+#include <iostream>
 
 struct PacketHeader
 {
@@ -47,18 +48,18 @@ struct PacketHeader
     }
 
     void print() {
-        std::sout << " " << "PacketHeader {" << std::endl;
-        std::sout << "   " << "m_packetFormat: " << this->m_packetFormat << std::endl;
-        std::sout << "   " << "m_gameMajorVersion: " << this->m_gameMajorVersion << std::endl;
-        std::sout << "   " << "m_gameMinorVersion: " << this->m_gameMinorVersion << std::endl;
-        std::sout << "   " << "m_packetVersion: " << this->m_packetVersion << std::endl;
-        std::sout << "   " << "m_packetId: " << Packet_ID_name[this->m_packetId] << std::endl;
-        std::sout << "   " << "m_sessionUID: " << this->m_sessionUID << std::endl;
-        std::sout << "   " << "m_sessionTime: " << this->m_sessionTime << std::endl;
-        std::sout << "   " << "m_frameIdentifier: " << this->m_frameIdentifier << std::endl;
-        std::sout << "   " << "m_playerCarIndex: " << this->m_playerCarIndex << std::endl;
-        std::sout << "   " << "m_secondaryPlayerCarIndex: " << this->m_secondaryPlayerCarIndex << std::endl;
-        std::sout << " " << "}" << std::endl;
+        std::cout << " " << "PacketHeader {" << std::endl;
+        std::cout << "   " << "m_packetFormat: " << this->m_packetFormat << std::endl;
+        std::cout << "   " << "m_gameMajorVersion: " << this->m_gameMajorVersion << std::endl;
+        std::cout << "   " << "m_gameMinorVersion: " << this->m_gameMinorVersion << std::endl;
+        std::cout << "   " << "m_packetVersion: " << this->m_packetVersion << std::endl;
+        std::cout << "   " << "m_packetId: " << Packet_ID_name[this->m_packetId] << std::endl;
+        std::cout << "   " << "m_sessionUID: " << this->m_sessionUID << std::endl;
+        std::cout << "   " << "m_sessionTime: " << this->m_sessionTime << std::endl;
+        std::cout << "   " << "m_frameIdentifier: " << this->m_frameIdentifier << std::endl;
+        std::cout << "   " << "m_playerCarIndex: " << this->m_playerCarIndex << std::endl;
+        std::cout << "   " << "m_secondaryPlayerCarIndex: " << this->m_secondaryPlayerCarIndex << std::endl;
+        std::cout << " " << "}" << std::endl;
     }
 };
 
