@@ -58,9 +58,9 @@ int main() {
 
     // Ontvang continu data
     while (true) {
-        int n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 0, (struct sockaddr *)&cliaddr, &len);
+        int n = recvfrom(sockfd, buffer, 4096, 0, (struct sockaddr *)&cliaddr, &len);
 
-        unsigned long offset = h_packet.get(buffer); // Haal de offset op van de PacketHeader
+        h_packet.get(buffer);
         h_packet.print();
         //std::cout << "Ontvangen bericht: " << h_packet << ", " << offset << std::endl;
 
