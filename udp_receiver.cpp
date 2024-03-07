@@ -4,6 +4,8 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include "PacketHeader.h"
+
 #define PORT 20777 // Poort waarop de UDP-verbinding wordt gemaakt
 
 int main() {
@@ -31,14 +33,17 @@ int main() {
 
     std::cout << "Server luistert op poort " << PORT << std::endl;
 
-    char buffer[1024];
+    char buffer[4096];
     socklen_t len = sizeof(cliaddr);
+
+    PacketHeader h_packet;
 
     // Ontvang continu data
     while (true) {
         int n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 0, (struct sockaddr *)&cliaddr, &len);
         buffer[n] = '\0'; // Voeg een nulbyte toe aan het einde van de ontvangen gegevens
-        std::cout << "Ontvangen bericht: " << buffer << std::endl;
+        h_packet.get(buffer);
+        std::cout << "Ontvangen bericht: " << h_packet.m_sessionTime << std::endl;
     }
 
     // Sluit de socket
