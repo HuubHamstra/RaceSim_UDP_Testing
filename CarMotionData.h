@@ -1,7 +1,7 @@
 #ifndef CARMOTIONDATA_H
 #define CARMOTIONDATA_H
 
-#include <cstdint> // Inclusie van cstdint voor het definiëren van uint16_t, uint8_t, uint32_t, uint64_t
+#include <cstdint> // Include cstdint for defining int16_t, uint16_t, etc.
 
 struct CarMotionData
 {
@@ -83,7 +83,7 @@ struct CarMotionData
         memcpy(&this->m_roll, &buffer[offset], sizeof(m_roll));
         offset = offset + sizeof(m_roll);
 
-        //
+        //d
         return offset;
     }
 };
