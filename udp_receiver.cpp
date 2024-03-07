@@ -64,9 +64,10 @@ int main() {
 
         std::cout << "Ontvangen bericht: " << h_packet.m_sessionTime << std::endl;
 
+        unsigned long offset = h_packet.get(buffer); // Haal de offset op van de PacketHeader
         switch (h_packet.m_packetId) {
             case PACKET_ID_MOTION:  // 0 - Motion
-                p_motion.get(buffer);
+                p_motion.get(buffer, offset); // Geef de offset mee aan CarMotionData
                 std::cout << "Velocity: " << p_motion.m_worldVelocityX << ","  << p_motion.m_worldVelocityY << ","  << p_motion.m_worldVelocityZ << std::endl;
                 break;
             // Voeg andere gevallen voor andere pakkettypen toe indien nodig
