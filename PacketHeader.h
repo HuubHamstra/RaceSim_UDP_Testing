@@ -19,7 +19,6 @@ struct PacketHeader
   // on, doesn't go back after flashbacks
   uint8 m_playerCarIndex; // Index of player's car in the array
   uint8 m_secondaryPlayerCarIndex; // Index of secondary player's car in the array (splitscreen)
-  // 255 if no second player
 
   unsigned long get(char* buffer){
         unsigned long offset = 0;
