@@ -95,6 +95,96 @@ struct PacketMotionData {
                sizeof(m_frontWheelsAngle));
         offset = offset + sizeof(m_frontWheelsAngle);
     }
+
+    void print() {
+        std::cout << " "
+                   << "PacketMotionData {" << std::endl;
+        for (int i = 0; i < 22; i++)  // 22 = this->m_carMotionData.size()
+        {
+            std::cout << "   "
+                       << "m_carMotionData[" << i << "]: " << std::endl;
+            this->m_carMotionData->print();
+        }
+
+        // Suspensions
+        for (int i = 0; i < 4; i++) {
+            switch (i) {
+                case 0:
+                    std::cout << "  Wheel Rear Left" << std::endl;
+                    break;
+                case 1:
+                    std::cout << "  Wheel Rear Right" << std::endl;
+                    break;
+                case 2:
+                    std::cout << "  Wheel Front Left" << std::endl;
+                    break;
+                case 3:
+                    std::cout << "  Wheel Front Right" << std::endl;
+                    break;
+                default:
+                    std::cout << "  Wheel None" << std::endl;
+                    break;
+            }
+            std::cout << "   m_suspensionPosition[" << i
+                       << "]: " << this->m_suspensionPosition[i] << std::endl;
+            std::cout << "   m_suspensionVelocity[" << i
+                       << "]: " << this->m_suspensionVelocity[i] << std::endl;
+            std::cout << "   m_suspensionAcceleration[" << i
+                       << "]: " << this->m_suspensionAcceleration[i]
+                       << std::endl;
+        }
+        // Wheels
+        for (int i = 0; i < 4; i++) {
+            switch (i) {
+                case 0:
+                    std::cout << "  Wheel Rear Left" << std::endl;
+                    break;
+                case 1:
+                    std::cout << "  Wheel Rear Right" << std::endl;
+                    break;
+                case 2:
+                    std::cout << "  Wheel Front Left" << std::endl;
+                    break;
+                case 3:
+                    std::cout << "  Wheel Front Right" << std::endl;
+                    break;
+                default:
+                    std::cout << "  Wheel None" << std::endl;
+                    break;
+            }
+            std::cout << "   m_wheelSpeed[" << i
+                       << "]: " << this->m_wheelSpeed[i] << std::endl;
+            std::cout << "   m_wheelSlip[" << i
+                       << "]: " << this->m_wheelSlip[i] << std::endl;
+        }
+        // localVelocity
+        std::cout << "   m_localVelocityX: " << this->m_localVelocityX
+                   << std::endl;
+        std::cout << "   m_localVelocityY: " << this->m_localVelocityY
+                   << std::endl;
+        std::cout << "   m_localVelocityZ: " << this->m_localVelocityZ
+                   << std::endl;
+        // angularVelocity
+        std::cout << "   m_angularVelocityX: " << this->m_angularVelocityX
+                   << std::endl;
+        std::cout << "   m_angularVelocityY: " << this->m_angularVelocityY
+                   << std::endl;
+        std::cout << "   m_angularVelocityZ: " << this->m_angularVelocityZ
+                   << std::endl;
+        // angularAcceleration
+        std::cout << "   m_angularAccelerationX: "
+                   << this->m_angularAccelerationX << std::endl;
+        std::cout << "   m_angularAccelerationY: "
+                   << this->m_angularAccelerationY << std::endl;
+        std::cout << "   m_angularAccelerationZ: "
+                   << this->m_angularAccelerationZ << std::endl;
+
+        std::cout << "   m_frontWheelsAngle: " << this->m_frontWheelsAngle
+                   << std::endl;
+
+        std::cout << " "
+                   << "}" << std::endl;
+    }
 };
 
 #endif
