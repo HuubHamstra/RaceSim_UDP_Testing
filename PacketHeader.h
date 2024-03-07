@@ -53,6 +53,7 @@ struct PacketHeader
         std::cout << "   " << "m_gameMajorVersion: " << this->m_gameMajorVersion << std::endl;
         std::cout << "   " << "m_gameMinorVersion: " << this->m_gameMinorVersion << std::endl;
         std::cout << "   " << "m_packetVersion: " << this->m_packetVersion << std::endl;
+        std::cout << "   " << "m_packetId: " << this->m_packetId << std::endl;
         std::cout << "   " << "m_sessionUID: " << this->m_sessionUID << std::endl;
         std::cout << "   " << "m_sessionTime: " << this->m_sessionTime << std::endl;
         std::cout << "   " << "m_frameIdentifier: " << this->m_frameIdentifier << std::endl;
