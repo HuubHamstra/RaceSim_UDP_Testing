@@ -1,7 +1,12 @@
 #ifndef CARMOTIONDATA_H
 #define CARMOTIONDATA_H
 
-#include <cstdint> // Include cstdint for defining int16_t, uint16_t, etc.
+typedef unsigned short uint16;
+typedef unsigned short uint8;
+typedef unsigned short uint32;
+typedef unsigned short uint64;
+
+#include <cstdint> // Include cstdint for defining int16, uint16, etc.
 
 struct CarMotionData
 {
@@ -11,12 +16,12 @@ struct CarMotionData
     float m_worldVelocityX; // Velocity in world space X – metres/s
     float m_worldVelocityY; // Velocity in world space Y
     float m_worldVelocityZ; // Velocity in world space Z
-    int16_t m_worldForwardDirX; // World space forward X direction (normalised)
-    int16_t m_worldForwardDirY; // World space forward Y direction (normalised)
-    int16_t m_worldForwardDirZ; // World space forward Z direction (normalised)
-    int16_t m_worldRightDirX; // World space right X direction (normalised)
-    int16_t m_worldRightDirY; // World space right Y direction (normalised)
-    int16_t m_worldRightDirZ; // World space right Z direction (normalised)
+    int16 m_worldForwardDirX; // World space forward X direction (normalised)
+    int16 m_worldForwardDirY; // World space forward Y direction (normalised)
+    int16 m_worldForwardDirZ; // World space forward Z direction (normalised)
+    int16 m_worldRightDirX; // World space right X direction (normalised)
+    int16 m_worldRightDirY; // World space right Y direction (normalised)
+    int16 m_worldRightDirZ; // World space right Z direction (normalised)
     float m_gForceLateral; // Lateral G-Force component
     float m_gForceLongitudinal; // Longitudinal G-Force component
     float m_gForceVertical; // Vertical G-Force component
