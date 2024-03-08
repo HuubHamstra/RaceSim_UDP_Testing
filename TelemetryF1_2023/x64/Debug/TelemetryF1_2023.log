@@ -1,0 +1,16 @@
+﻿  Main.cpp
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(96,5): error C3861: 'glColor3f': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(99,5): error C3861: 'glLoadIdentity': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(100,5): error C3861: 'glTranslatef': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(101,5): error C3861: 'glScalef': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(109,17): error C2065: 'GL_QUADS': undeclared identifier
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(109,9): error C3861: 'glBegin': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(111,9): error C3861: 'glTexCoord2f': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(112,9): error C3861: 'glVertex2f': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(113,9): error C3861: 'glTexCoord2f': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(114,9): error C3861: 'glVertex2f': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(115,9): error C3861: 'glTexCoord2f': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(116,9): error C3861: 'glVertex2f': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(117,9): error C3861: 'glTexCoord2f': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(118,9): error C3861: 'glVertex2f': identifier not found
+C:\Users\amant\source\repos\TelemetryF1_2023\Main.cpp(119,9): error C3861: 'glEnd': identifier not found
