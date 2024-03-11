@@ -41,7 +41,7 @@ int main() {
     // Serveradres instellen
     memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
-    servaddr.sin_addr.s_addr = inet_addr("172.20.10.4"); // IP-adres instellen
+    servaddr.sin_addr.s_addr = inet_addr("192.168.221.228"); // IP-adres instellen
     servaddr.sin_port = htons(PORT);
 
     // Bind de socket met het serveradres
