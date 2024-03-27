@@ -10,22 +10,24 @@
 
 #define PORT 20777 // Poort waarop de UDP-verbinding wordt gemaakt
 
-enum packetId : int {
-    PACKET_ID_MOTION = 0,
-    PACKET_ID_SESSION = 1,
-    PACKET_ID_LAP_DATA = 2,
-    PACKET_ID_EVENT = 3,
-    PACKET_ID_PARTICIPANTS = 4,
-    PACKET_ID_CAR_SETUPS = 5,
-    PACKET_ID_CAR_TELEMETRY = 6,
-    PACKET_ID_CAR_STATUS = 7,
-    PACKET_ID_FINAL_CLASSIFICATION = 8,
-    PACKET_ID_LOBBY_INFO = 9,
-    PACKET_ID_CAR_DAMAGE = 10,
-    PACKET_ID_SESSION_HISTORY = 11,
-    PACKET_ID_TYRE_SETS = 12,
-    PACKET_ID_MOTION_EX = 13,
-};
+// Functie om 16-bit integer van little-endian naar host-endian te converteren
+uint16_t convertLE16(uint16_t value) {
+    return ntohs(value);
+}
+
+// Functie om 32-bit integer van little-endian naar host-endian te converteren
+uint32_t convertLE32(uint32_t value) {
+    return ntohl(value);
+}
+
+// Functie om float van little-endian naar host-endian te converteren
+float convertLEFloat(float value) {
+    uint32_t temp;
+    memcpy(&temp, &value, sizeof(float));
+    temp = ntohl(temp);
+    memcpy(&value, &temp, sizeof(float));
+    return value;
+}
 
 int main() {
     int sockfd;
@@ -69,9 +71,13 @@ int main() {
         switch (h_packet.m_packetId) {
             case PACKET_ID_MOTION:  // 0 - Motion
                 p_motion.get(buffer); // Geef de juiste offset mee aan CarMotionData
+                // Converteer de ontvangen gegevens van little-endian naar host-endian formaat
+                p_motion.m_worldVelocityX = convertLEFloat(p_motion.m_worldVelocityX);
+                p_motion.m_worldVelocityY = convertLEFloat(p_motion.m_worldVelocityY);
+                p_motion.m_worldVelocityZ = convertLEFloat(p_motion.m_worldVelocityZ);
                 // CarMotionData c_motion = p_motion.m_carMotionData;
                 // p_motion.print();
-                std::cout << "Velocity: " << p_motion.m_localVelocityX << ","  << p_motion.m_localVelocityY << ","  << p_motion.m_localVelocityZ << std::endl;
+                std::cout << "Velocity: " << p_motion.m_worldVelocityX << ","  << p_motion.m_worldVelocityY << ","  << p_motion.m_worldVelocityZ << std::endl;
                 break;
             // Voeg andere gevallen voor andere pakkettypen toe indien nodig
         }
