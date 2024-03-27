@@ -8,7 +8,8 @@
 #include "headers/PacketHeader.h"
 #include "headers/PacketMotionData.h"
 
-#define PORT 20777 // Poort waarop de UDP-verbinding wordt gemaakt
+#define PORT 20777 // Poort waarop de UDP-verbinding wordt gemaakt  
+#define PACKET_ID_MOTION 0 // Definition of PACKET_ID_MOTION
 
 // Functie om 16-bit integer van little-endian naar host-endian te converteren
 uint16_t convertLE16(uint16_t value) {
