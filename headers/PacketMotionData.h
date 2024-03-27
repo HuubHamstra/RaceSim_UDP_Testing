@@ -112,7 +112,7 @@ struct PacketMotionData
     {
       std::cout << "   "
                 << "m_carMotionData[" << i << "]: " << std::endl;
-      this->m_carMotionData->print();
+      this->m_carMotionData[i].print(); // Changed from this->m_carMotionData->print();
     }
 
     // Suspensions
@@ -137,9 +137,9 @@ struct PacketMotionData
         break;
       }
       std::cout << "   m_suspensionPosition[" << i
-                << "]: " std::endl;
+                << "]: " << std::endl; // Added missing semicolon here
       std::cout << "   m_suspensionVelocity[" << i
-                << "]: " std::endl;
+                << "]: " << std::endl; // Added missing semicolon here
       std::cout << "   m_suspensionAcceleration[" << i
                 << "]: " << this->m_suspensionAcceleration[i]
                 << std::endl;
@@ -166,9 +166,9 @@ struct PacketMotionData
         break;
       }
       std::cout << "   m_wheelSpeed[" << i
-                << "]: " std::endl;
+                << "]: " << std::endl; // Added missing semicolon here
       std::cout << "   m_wheelSlip[" << i
-                << "]: " std::endl;
+                << "]: " << std::endl; // Added missing semicolon here
     }
     // localVelocity
     std::cout << "   m_localVelocityX: " << this->m_localVelocityX
