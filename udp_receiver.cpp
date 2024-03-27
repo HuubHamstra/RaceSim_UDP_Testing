@@ -70,14 +70,13 @@ int main() {
 
         switch (h_packet.m_packetId) {
             case PACKET_ID_MOTION:  // 0 - Motion
-                p_motion.get(buffer); // Geef de juiste offset mee aan CarMotionData
+                p_motion.get(buffer); // Geef de juiste offset mee aan PacketMotionData
                 // Converteer de ontvangen gegevens van little-endian naar host-endian formaat
-                p_motion.m_worldVelocityX = convertLEFloat(p_motion.m_worldVelocityX);
-                p_motion.m_worldVelocityY = convertLEFloat(p_motion.m_worldVelocityY);
-                p_motion.m_worldVelocityZ = convertLEFloat(p_motion.m_worldVelocityZ);
-                // CarMotionData c_motion = p_motion.m_carMotionData;
-                // p_motion.print();
-                std::cout << "Velocity: " << p_motion.m_worldVelocityX << ","  << p_motion.m_worldVelocityY << ","  << p_motion.m_worldVelocityZ << std::endl;
+                p_motion.m_localVelocityX = convertLEFloat(p_motion.m_localVelocityX);
+                p_motion.m_localVelocityY = convertLEFloat(p_motion.m_localVelocityY);
+                p_motion.m_localVelocityZ = convertLEFloat(p_motion.m_localVelocityZ);
+                // Print de snelheidsgegevens
+                std::cout << "Velocity: " << p_motion.m_localVelocityX << ","  << p_motion.m_localVelocityY << ","  << p_motion.m_localVelocityZ << std::endl;
                 break;
             // Voeg andere gevallen voor andere pakkettypen toe indien nodig
         }
