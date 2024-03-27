@@ -5,8 +5,8 @@
 #include <unistd.h>
 #include <cstdint> // Inclusie van cstdint voor uint16, uint8, uint32, uint64
 
-#include "/headers/PacketHeader.h"
-#include "/headers/PacketMotionData.h"
+#include "headers/PacketHeader.h"
+#include "headers/PacketMotionData.h"
 
 #define PORT 20777 // Poort waarop de UDP-verbinding wordt gemaakt
 
