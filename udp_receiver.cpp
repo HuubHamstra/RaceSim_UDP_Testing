@@ -5,30 +5,27 @@
 #include <unistd.h>
 #include <cstdint> // Inclusie van cstdint voor uint16, uint8, uint32, uint64
 
-#include "headers/PacketHeader.h"
-#include "headers/PacketMotionData.h"
+#include "PacketHeader.h"
+#include "PacketMotionData.h"
 
-#define PORT 20777 // Poort waarop de UDP-verbinding wordt gemaakt  
-#define PACKET_ID_MOTION 0 // Definition of PACKET_ID_MOTION
+#define PORT 20777 // Poort waarop de UDP-verbinding wordt gemaakt
 
-// Functie om 16-bit integer van little-endian naar host-endian te converteren
-uint16_t convertLE16(uint16_t value) {
-    return ntohs(value);
-}
-
-// Functie om 32-bit integer van little-endian naar host-endian te converteren
-uint32_t convertLE32(uint32_t value) {
-    return ntohl(value);
-}
-
-// Functie om float van little-endian naar host-endian te converteren
-float convertLEFloat(float value) {
-    uint32_t temp;
-    memcpy(&temp, &value, sizeof(float));
-    temp = ntohl(temp);
-    memcpy(&value, &temp, sizeof(float));
-    return value;
-}
+enum packetId : int {
+    PACKET_ID_MOTION = 0,
+    PACKET_ID_SESSION = 1,
+    PACKET_ID_LAP_DATA = 2,
+    PACKET_ID_EVENT = 3,
+    PACKET_ID_PARTICIPANTS = 4,
+    PACKET_ID_CAR_SETUPS = 5,
+    PACKET_ID_CAR_TELEMETRY = 6,
+    PACKET_ID_CAR_STATUS = 7,
+    PACKET_ID_FINAL_CLASSIFICATION = 8,
+    PACKET_ID_LOBBY_INFO = 9,
+    PACKET_ID_CAR_DAMAGE = 10,
+    PACKET_ID_SESSION_HISTORY = 11,
+    PACKET_ID_TYRE_SETS = 12,
+    PACKET_ID_MOTION_EX = 13,
+};
 
 int main() {
     int sockfd;
@@ -44,7 +41,7 @@ int main() {
     // Serveradres instellen
     memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
-    servaddr.sin_addr.s_addr = inet_addr("192.168.215.228"); // IP-adres instellen
+    servaddr.sin_addr.s_addr = inet_addr("192.168.221.228"); // IP-adres instellen
     servaddr.sin_port = htons(PORT);
 
     // Bind de socket met het serveradres
@@ -71,13 +68,10 @@ int main() {
 
         switch (h_packet.m_packetId) {
             case PACKET_ID_MOTION:  // 0 - Motion
-                p_motion.get(buffer); // Geef de juiste offset mee aan PacketMotionData
-                // Converteer de ontvangen gegevens van little-endian naar host-endian formaat
-                p_motion.m_localVelocityX = convertLEFloat(p_motion.m_localVelocityX);
-                p_motion.m_localVelocityY = convertLEFloat(p_motion.m_localVelocityY);
-                p_motion.m_localVelocityZ = convertLEFloat(p_motion.m_localVelocityZ);
-                // Print de snelheidsgegevens
-                std::cout << "Velocity: " << p_motion.m_localVelocityX << ","  << p_motion.m_localVelocityY << ","  << p_motion.m_localVelocityZ << std::endl;
+                p_motion.get(buffer); // Geef de juiste offset mee aan CarMotionData
+                //CarMotionData c_motion = p_motion.m_carMotionData;
+                p_motion.print();
+                //std::cout << "Velocity: " << p_motion.m_localVelocityX << ","  << p_motion.m_localVelocityY << ","  << p_motion.m_localVelocityZ << std::endl;
                 break;
             // Voeg andere gevallen voor andere pakkettypen toe indien nodig
         }
